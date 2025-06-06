@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, removeItem, updateQuantity } from "./CartSlice";
 import './ProductList.css'
 import CartItem from './CartItem';
+
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [showPlants, setShowPlants] = useState(false)
+
+    const dispatch = useDispatch();
+    ; // State to control the visibility of the About Us page
+    const handleAddToCart = (product) => {
+        dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action)
+        setAddedToCart((prevState) => ({ // Update the local state to reflect that the product has been added
+            ...prevState, // Spread the previous state to retain existing entries
+            [product.name]: true, // Set the current product's name as a key with value 'true' to mark it as added
+        }));
+    };
+    const [addedToCart, setAddedToCart] = useState({});
 
     const plantsArray = [
         {
@@ -277,7 +292,7 @@ function ProductList({ onHomeClick }) {
                     {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
                         <div key={index}> {/* Unique key for each category div */}
                             <h1>
-                                <div style={{textAlign: 'center'}}>{category.category}</div> {/* Display the category name */}
+                                <div style={{ textAlign: 'center' }}>{category.category}</div> {/* Display the category name */}
                             </h1>
                             <div className="product-list"> {/* Container for the list of plant cards */}
                                 {category.plants.map((plant, plantIndex) => ( // Loop through each plant in the current category
