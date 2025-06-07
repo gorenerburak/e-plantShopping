@@ -106,6 +106,15 @@ body {
     transition: background-color 0.3s ease-in-out;
     margin-top: 10px;
 }
+.product-button-added {
+    background-color: gray;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+}
 
 .product-button:hover {
     background-color: #c0392b;
@@ -218,6 +227,7 @@ body {
   .product-button.added-to-cart {
     background-color: grey; /* Grey when product is added */
   }
+  
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */
